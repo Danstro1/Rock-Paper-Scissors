@@ -52,3 +52,19 @@ function playRound(playerSelection,computerSelection){
             }
     }
 }
+
+function game(){
+    for(let i = 0; i < 5; i++){
+        let input = prompt("Write 'Paper', 'Rock' or 'Scissors'");
+        if(input == null || input == undefined || input == '') {
+            i--;
+            console.log("You entered an empty line");
+        }else console.log(playRound(input,getComputerChoice()));
+    }
+    console.log("Total Human wins:" + human);
+    console.log("Total Robot wins:" + robot);
+    if(human > robot) console.log("Human won overall");
+    else if(human < robot) console.log("Robot won overall");
+    else console.log("Draw overall")
+}
+game();
