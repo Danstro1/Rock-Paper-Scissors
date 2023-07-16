@@ -18,47 +18,56 @@ function playRound(playerSelection){
     let computerSelection = getComputerChoice();
     let player = playerSelection.target.classList.value;
     if(player === computerSelection){
-        result.textContent = "It's a Draw! \nPlayer: " + player + "\nComputer: " + computerSelection
+        result.innerText = "It's a Draw! \nPlayer: " + player + "\nComputer: " + computerSelection;
+        final.innerText = `Total Human wins: ${human}\n Total Robot wins: ${robot}\n`
         return;
     }
     switch(player){
         case 'Rock':
             if(computerSelection === 'Paper') {
                 robot++;
-                result.textContent = "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
-                return;
+                result.innerText = "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                break;
             }
             if(computerSelection === 'Scissors') {
                 human++;
-                result.textContent = "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
-                return;
+                result.innerText = "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                break;
             }
         case 'Paper':
             if(computerSelection === 'Scissors') {
                 robot++;
-                result.textContent = "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
-                return;
+                result.innerText = "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                break;
             }
             if(computerSelection === 'Rock') {
                 human++;
-                result.textContent = "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
-                return;
+                result.innerText = "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                break;
             }
         case 'Scissors':
             if(computerSelection === 'Rock') {
                 robot++;
-                result.textContent = "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
-                return;
+                result.innerText = "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                break;
             }
 
             if(computerSelection === 'Paper') {
                 human++;
-                result.textContent = "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
-                return;
+                result.innerText = "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                break;
             }
+    }    
+    final.innerText = `Total Human wins: ${human}\n Total Robot wins: ${robot}\n`
+    if(human >= 5 || robot >= 5){
+        buttons.forEach(button => button.disabled = true);
+        if(human > robot) final.innerText += "Human won overall!";
+        else if(human < robot) final.innerText += "Robot won overall!";
+        else final.innerText += "Draw overall!";
     }
 }
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener('click',playRound));
 
+const final = document.querySelector('.final');
