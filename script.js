@@ -14,43 +14,51 @@ function getComputerChoice(){
 }
 
 function playRound(playerSelection){
+    const result = document.querySelector('.result');
     let computerSelection = getComputerChoice();
     let player = playerSelection.target.classList.value;
-    console.log(player);
     if(player === computerSelection){
-        return "It's a Draw! \nPlayer: " + player + "\nComputer: " + computerSelection
+        result.textContent = "It's a Draw! \nPlayer: " + player + "\nComputer: " + computerSelection
+        return;
     }
     switch(player){
         case 'Rock':
             if(computerSelection === 'Paper') {
                 robot++;
-                return "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                result.textContent = "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                return;
             }
             if(computerSelection === 'Scissors') {
                 human++;
-                return "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                result.textContent = "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                return;
             }
         case 'Paper':
             if(computerSelection === 'Scissors') {
                 robot++;
-                return "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                result.textContent = "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                return;
             }
             if(computerSelection === 'Rock') {
                 human++;
-                return "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                result.textContent = "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                return;
             }
         case 'Scissors':
             if(computerSelection === 'Rock') {
                 robot++;
-                return "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                result.textContent = "You Lose! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                return;
             }
 
             if(computerSelection === 'Paper') {
                 human++;
-                return "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                result.textContent = "You Won! \nPlayer: " + player + "\nComputer: " + computerSelection;
+                return;
             }
     }
 }
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener('click',playRound));
+
