@@ -13,11 +13,10 @@ function getComputerChoice(){
     }
 }
 
-function playRound(playerSelection,computerSelection){
-    let player = playerSelection.trim()[0].toUpperCase() + playerSelection.trim().toLowerCase().slice(1);
-    if(player != "Paper" && player != 'Rock' && player != 'Scissors') {
-        return "You entered wrong"
-    }
+function playRound(playerSelection){
+    let computerSelection = getComputerChoice();
+    let player = playerSelection.target.classList.value;
+    console.log(player);
     if(player === computerSelection){
         return "It's a Draw! \nPlayer: " + player + "\nComputer: " + computerSelection
     }
@@ -53,18 +52,5 @@ function playRound(playerSelection,computerSelection){
     }
 }
 
-function game(){
-    for(let i = 0; i < 5; i++){
-        let input = prompt("Write 'Paper', 'Rock' or 'Scissors'");
-        if(input == null || input == undefined || input == '') {
-            i--;
-            console.log("You entered an empty line");
-        }else console.log(playRound(input,getComputerChoice()));
-    }
-    console.log("Total Human wins:" + human);
-    console.log("Total Robot wins:" + robot);
-    if(human > robot) console.log("Human won overall");
-    else if(human < robot) console.log("Robot won overall");
-    else console.log("Draw overall")
-}
-game();
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click',playRound));
